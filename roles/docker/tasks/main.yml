@@ -1,0 +1,33 @@
+---
+
+
+- name: Install Docker
+  yum:
+    name:
+    - docker
+    state: latest
+
+
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+
+- name: Log into private registry and force re-authorization
+  docker_login:    
+    username: crussassin
+    password: akWVRip8
+    reauthorize: yes
+
+
+
+
+- name: download docker image
+  shell: |
+    docker run -d -p 5001:5000 crussassin/point_8:web_app
+    docker run -d -p 5002:5000 crussassin/point_8:web_app
+    docker run -d -p 5003:5000 crussassin/point_8:web_app
+
