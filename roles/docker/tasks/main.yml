@@ -19,7 +19,7 @@
 - name: Log into private registry and force re-authorization
   docker_login:    
     username: crussassin
-    password: $$$
+    password: "{{ dockerhub_pass }}"
     reauthorize: yes
 
 
